@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="./css/bootstrap-dialog.min.css">
+        <link type="text/css" rel="stylesheet" href="./css/commone.css" />
+        <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./js/bootstrap-dialog.min.js"></script>
+        <script type="text/javascript" src="./js/bootstrap-pagy.min.js"></script>
+        <script type="text/javascript" src="./js/common.js"></script>
+        <script type="text/javascript" src="./js/system_menu.js"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style type="text/css">
+	         #Menu-module-box .modal-dialog{ width: 900px; }
+		     #Menu-module-box .modal-content{width: 900px;}
+		     #Menu-module-box .modal-content td, #Menu-module-box .modal-content th{padding: 8px;}
+        	 .add-secondMenu-box .modal-dialog{margin-top: 13%;}
+        </style>
+    </head>
+    <body>
+        <div class="nav navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+               <a href="./index.html" class="navbar-brand"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a>
+               <ul class="nav navbar-nav" id="nav-box-ul"></ul>
+               <ul class="nav navbar-nav pull-right">
+               		<li><a href="./modify_password.html" class="acctInfo" data-toggle="modal" data-target="#modifyPassword"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
+                	<li><a href="javascript:void(0)" onclick="exit()">注销</a></li>
+               </ul>
+            </div>
+        </div>
+        <div class="container main hide">
+            <div class="row">
+	            <ol class="breadcrumb"></ol>
+				<div class="row main-page">
+					<div class="col-lg-8">
+						<div class="input-group">
+							<input type="text" class="form-control searchInput" name="searchInput" placeholder="模块名称" maxlength="64" value="" />
+							<span class="input-group-btn"><button class="btn btn-primary" type="button" onclick="$.search()"><span class="glyphicon glyphicon-search"></span> 搜索</button></span>
+							<span class="input-group-btn" ><button style="margin-left: 15px;" class="btn btn-primary" type="button" onclick="$.del()"><span class="glyphicon glyphicon glyphicon-trash"></span> 清空</button></span>
+						</div><!-- /input-group -->
+					</div>
+					<div class="col-lg-2"></div>
+					<div class="col-lg-2"><button type="button" class="btn btn-primary add-btn hide float-right" onclick="showAddBox()"><span class="glyphicon glyphicon-plus"></span>新增模块</button></div>
+				</div>
+				<table class="table table-bordered table-hover" style="margin-top:20px;">
+					<thead> 
+						<th style="width:60px;">编号</th>
+						<th style="width:200px;">模块名称</th>
+						<th style="width:150px;">模块编码</th>
+						<th style="width:150px;">创建时间</th>
+						<th style="width:400px;">操作</th>
+					</thead>
+					<tbody class="tbody"></tbody>
+				</table>
+				<nav id="pagination"><ul class="pagination"></ul></nav>
+			</div>
+        </div>
+        <!--新增 begin  -->
+        <div class="modal fade add-box sm-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h4 class="modal-title">添加模块</h4></div>
+					<div class="modal-body">
+						<h4>模块名称:</h4><input type="text" class="form-control moduleName" placeholder="模块名称" maxlength="64" value="" />
+						<h4>模块编码:</h4><input type="text" class="form-control moduleCode" placeholder="模块编码" maxlength="64" value="" />
+						<h4>排序:</h4><input type="number" class="form-control moduleOrder" placeholder="排序" maxlength="64" value="1" />
+						<input type="text" style="display: none;" class="form-control moduleSuperCode"  value="0" />
+						<input type="text" style="display: none;" class="form-control moduleLevel"  value="0" />
+					</div> 
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="addModule()">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+          <!--新增 end  -->
+          
+         <!--修改 begin  -->
+        <div class="modal fade modify-box sm-modal">
+			<div class="modal-dialog" >
+				<div class="modal-content">
+					<div class="modal-header"><h4 class="modal-title">修改模块信息</h4></div>
+					<div class="modal-body">
+						<h4>模块id:</h4><input type="text" class="form-control ModuleId" readonly="readonly" placeholder="模块id" maxlength="64" value="" />
+						<h4>模块名称:</h4><input type="text" class="form-control ModuleName" placeholder="模块名称" maxlength="64" value="" />
+						<h4>模块编码:</h4><input type="text" class="form-control ModuleCode" placeholder="模块编码" maxlength="64" value="" />
+						<h4>排序:</h4>   <input type="text" class="form-control ModuleOrder" placeholder="排序" maxlength="64" value="" />
+						
+					</div> 
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="modifyMenu()">修改</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+         <!--修改 end  -->
+        
+        <div id="Menu-module-box" class="modal fade Menu-module-box sm-modal"> 
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title role-module-title">菜单管理</h4>
+					</div>
+					<div class="modal-body" style="min-height:400px; overflow-y:auto">
+					<h4 class="currentModule"></h4>
+						<div class="row main-page">
+							<div class="col-lg-8">
+								<div class="input-group">
+									<input type="text" class="form-control searchInput" name="searchInput" placeholder="菜单名称" maxlength="64" value="" />
+									<span class="input-group-btn"><button class="btn btn-primary" type="button" onclick="$.Secondsearch()"><span class="glyphicon glyphicon-search"></span> 搜索</button></span>
+									<span class="input-group-btn" ><button style="margin-left: 15px;" class="btn btn-primary" type="button" onclick="$.Seconddel()"><span class="glyphicon glyphicon glyphicon-trash"></span> 清空</button></span>
+								</div><!-- /input-group -->
+							</div>
+							<div class="col-lg-2"></div>
+							<div class="col-lg-2"><button type="button" class="btn btn-primary add-btn hide float-right" onclick="showAddSeconMenu('add-secondMenu-box')"><span class="glyphicon glyphicon-plus"></span>新增菜单</button></div>
+						</div>
+						<div class="clear-20"></div>
+						<table class="module-table table-bordered">
+							<thead> 
+							<th style="width:60px;">编号</th>
+							<th style="width:200px;">菜单名称</th>
+							<th style="width:150px;">菜单编码</th>
+							<th style="width:150px;">创建时间</th>
+							<th style="width:250px;">菜单链接</th>
+							<th style="width:200px;">操作</th>
+						</thead>
+						<tbody class="tbody"></tbody>
+						
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="modifyPassword" tabindex="-1" role="dialog" aria-labelledby="modifyPasswordLabel" aria-hidden="true">
+			<div class="modal-dialog" style="width:400px;"><div class="modal-content"></div></div>
+		</div>
+         <!--新增二级菜单 begin  -->
+        <div class="modal fade add-secondMenu-box sm-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h4 class="modal-title">添加菜单</h4></div>
+					<div class="modal-body">
+						<h4>菜单名称:</h4><input type="text" class="form-control moduleName" placeholder="菜单名称" maxlength="64" value="" />
+						<h4>菜单编码:</h4><input type="text" class="form-control moduleCode" placeholder="菜单编码" maxlength="64" value="" />
+						<h4>菜单链接:</h4><input type="text" class="form-control modulePage" placeholder="菜单链接" maxlength="64" value="" />
+						<h4>排序:</h4><input type="number" class="form-control moduleOrder" placeholder="排序" maxlength="64" value="1" />
+						
+						<input type="text" style="display: none;" class="form-control moduleSuperCode"  value="0" />
+						<input type="text" style="display: none;" class="form-control moduleLevel"  value="1" />
+					</div> 
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="addSecondModule()">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+          <!--新增二级菜单 end  -->
+             
+         <!--修改 begin  -->
+        <div class="modal fade modify-secondMenu-box sm-modal">
+			<div class="modal-dialog" >
+				<div class="modal-content">
+					<div class="modal-header"><h4 class="modal-title">修改模块信息</h4></div>
+					<div class="modal-body">
+						<h4>模块id:</h4><input type="text" class="form-control ModuleId" readonly="readonly" placeholder="模块id" maxlength="64" value="" />
+						<h4>模块名称:</h4><input type="text" class="form-control ModuleName" placeholder="模块名称" maxlength="64" value="" />
+						<h4>模块编码:</h4><input type="text" class="form-control ModuleCode" placeholder="模块编码" maxlength="64" value="" />
+						<h4>菜单链接:</h4><input type="text" class="form-control modulePage" placeholder="菜单链接" maxlength="64" value="" />
+						<h4>排序:</h4><input type="number" class="form-control moduleOrder" placeholder="排序" maxlength="64" value="" />
+					</div> 
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" onclick="modifySecondMenu()">修改</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+         <!--修改 end  -->
+    </body>
+</html>
