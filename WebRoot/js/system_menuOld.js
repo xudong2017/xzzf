@@ -23,7 +23,7 @@ function initFun() {
 }
 /*
  * 获取列表数据
- * te5l.com [K]
+ * alex
  */
 function findListInfo() {
 	$.post('mgr/findModuleFirstList', {
@@ -47,7 +47,7 @@ function findListInfo() {
 }
 /*
  * 获取列表分页
- * te5l.com [K]
+ * alex
  */
 function findModulePage() {
 	$.post('mgr/findModuleFirstPage', {page : page,searchVal : $('input.searchInput').val()}, function(data) {
@@ -56,7 +56,7 @@ function findModulePage() {
 }
 /*
  * 解析数据列表的操作按钮
- * te5l.com [K]
+ * alex
  */
 function analyzeBtns(v) {
 	var btns = ""; 
@@ -67,7 +67,7 @@ function analyzeBtns(v) {
 }
 /*
  * 解析二级菜单数据列表的操作按钮
- * te5l.com [K]
+ * alex
  */
 function analyzeSecondBtns(v) {
 	var btns = ""; 
@@ -77,7 +77,7 @@ function analyzeSecondBtns(v) {
 }
 /*
  * 显示添加角色窗口
- * te5l.com [K]
+ * alex
  */
 function showAddBox(){
 	$('.empty').removeClass('empty');
@@ -87,7 +87,7 @@ function showAddBox(){
 }
 /*
  * 添加模块
- * te5l.com [K]
+ * alex
  */
 function addModule(){
 	$.isSubmit = true;
@@ -109,7 +109,7 @@ function addModule(){
 }
 /*
  * 显示模块信息信息窗口
- * te5l.com [K]
+ * alex
  */
 function showModifyBox(id){
 	$('.empty').removeClass('empty');
@@ -128,7 +128,7 @@ function showModifyBox(id){
 }
 /*
  * 编辑
- * te5l.com [K]
+ * alex
  */
 function modifyMenu(){
 //	console.log(menu);
@@ -155,7 +155,7 @@ function modifyMenu(){
 }
 /*
  * 提示并删除数据
- * te5l.com [K]
+ * alex
  */
 function hintDelete(id){
 	if(!id) return;
@@ -173,7 +173,7 @@ function hintDelete(id){
 
 /*
  * 模块二级菜单数据
- * te5l.com [K]
+ * alex
  */
 function listModule(id,currentModuleName){
 	if(!id) return;
@@ -257,7 +257,7 @@ function hintSecondModuleDelete(id){
 }
 /*
  * 显示模块信息信息窗口
- * te5l.com [K]
+ * alex
  */
 function showSecondModifyBox(id){
 	$('.empty').removeClass('empty');
@@ -279,7 +279,7 @@ function showSecondModifyBox(id){
 
 /*
  * 编辑保存二级菜单
- * te5l.com [K]
+ * alex
  */
 function modifySecondMenu(){
 	if(!menu.id) return;

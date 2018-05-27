@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 角色列表实体传输类
- * te5l.com [K]
+ * alex
  * @author Kiro
  */
 public class ModuleListDto implements Serializable {

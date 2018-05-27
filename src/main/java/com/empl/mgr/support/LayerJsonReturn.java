@@ -90,7 +90,7 @@ public class LayerJsonReturn implements Serializable {
 	}
 	/*
 	 * 成功
-	 * te5l.com [K]
+	 * alex
 	 */
 	public static LayerJsonReturn buildSuccess(int count,Object data) {
 		return build(0,"数据请求成功" ,count,data );
@@ -98,7 +98,7 @@ public class LayerJsonReturn implements Serializable {
 
 	/*
 	 * 失败
-	 * te5l.com [K]
+	 * alex
 	 */
 	public static LayerJsonReturn buildFailure(String msg) {
 		return build(300,msg ,0 , null );

@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 职位信息传输实体类
- * te5l.com [K]
+ * alex
  * @author Kiro
  */
 public class PositionListDto implements Serializable {

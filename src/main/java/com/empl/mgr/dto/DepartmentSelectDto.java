@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 部门下拉框
- * te5l.com [K]
+ * alex
  * @author Kiro
  */
 public class DepartmentSelectDto implements Serializable {

@@ -20,7 +20,7 @@ $(function() {
 
 /*
  * 根据当前帐号的权限获取导航菜单
- * te5l.com [K]
+ * alex
  */
 function findMenu(moduleCode, initFun) {
 	$.getJSON('mgr/findMenu', function(data) {
@@ -41,7 +41,7 @@ function findMenu(moduleCode, initFun) {
 
 /*
  * 解析导航菜单//即获取二级菜单
- * te5l.com [K]
+ * alex
  */
 function analyzeMenu(code, data){
 	var ul = '';
@@ -55,7 +55,7 @@ function analyzeMenu(code, data){
 
 /*
  * 获取权限信息, 传入模块编号及回调函数  
- * te5l.com [K]
+ * alex
  */
 function findModuleParameter(moduleCode, initFun) {
 	if(!moduleCode) return;
@@ -81,7 +81,7 @@ function findModuleParameter(moduleCode, initFun) {
 }
 /*
  * 获取面包绡
- * te5l.com [K]
+ * alex
  */
 function findBreadcrumb(){
 	$.post('mgr/findBreadcrumb', {moduleCode : moduleCode}, function(data){
@@ -94,7 +94,7 @@ function findBreadcrumb(){
 }
 /*
  * 追加面包绡
- * te5l.com [K]
+ * alex
  */
 function addBreadcrumb(msg){
 	$('ol.breadcrumb').find('.active').removeClass('active');
@@ -104,7 +104,7 @@ function addBreadcrumb(msg){
 
 /*
  * 退出登录
- * te5l.com [K]
+ * alex
  */
 function exit(){
 	BootstrapDialog.confirm("请确认是是否需要注销登录!", function(result){

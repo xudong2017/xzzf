@@ -37,7 +37,7 @@ function initFun() {
 }
 /*
  * 获取列表数据
- * te5l.com [K]
+ * alex
  */
 function findListInfo() {
 	layui.use('table', function(){
@@ -52,7 +52,7 @@ function findListInfo() {
 			            {field: 'name', title: '账户名', width:200},
 			            {field: 'nickname', title: '昵称', width:200,sort:true},
 			            {field: 'time', title: '创建时间', width:200},
-			            {field: 'creator', title: '负责人', width:150},
+			            {field: 'creator', title: '创建人', width:150},
 			            {fixed: 'right',title: '操作', width:350, templet: '#toolBar'}
 			          ]],
 	          page: true,
@@ -149,7 +149,7 @@ function showViewBox(id){
 
 /*
  * 提示并确认初始密码为123456
- * te5l.com [K]
+ * alex
  */
 function initPassword(id){
 	if(!id) return;
@@ -208,7 +208,7 @@ function Delete(id){
 }
 /*
  * 遍历并显示角色列表
- * te5l.com [K]
+ * alex
  */
 function manager(acctName){
 	if(acctName=="admin"){

@@ -13,14 +13,14 @@ $(function() {
 
 /*
  * 根据当前帐号的权限获取导航菜单
- * te5l.com [K]
+ * alex
  */
 function findMenu(moduleCode, initFun) {
 	console.log("findMenu");
 	$.getJSON('mgr/findMenu', function(data) {
 		if(!$.isSuccess(data)) return;
-		var nav = $('div#nav .layui-nav-ul').empty();
-		  $('<li class="layui-nav-item "><a href="./index.html" ><i class="layui-icon"style="font-size: 17px;color: #fff;">&#xe68e;</i> &nbsp;首页</a></li>').appendTo(nav);
+		var nav = $('div#nav .layui-nav').empty();
+//		  $('<li class="layui-nav-item "><a href="./index.html" ><i class="layui-icon"style="font-size: 17px;color: #fff;">&#xe68e;</i> &nbsp;首页</a></li>').appendTo(nav);
 		$.each(data.body, function(i, v) {
 			if(!v.moduleLevel){
 				$('<li class=\'layui-nav-item\' name=\''+v.moduleCode+'\'></li>')
@@ -30,22 +30,22 @@ function findMenu(moduleCode, initFun) {
 				.appendTo(nav);
 			}
 		});
-		$('<li class="layui-nav-right floatright"><a href="javascript:void(0)" onclick="exit(this)">注销</a></li>').appendTo(nav);
-		$(' <li class="layui-nav-right floatright"><a href="#" data-target="#modifyPassword" onclick="modifyPassword()"><i class="layui-icon" style="font-size: 17px;color: #fff;">&#xe612;</i>'+
-		  ' &nbsp; <span class="acctInfo"></span></a></li>').appendTo(nav);
+//		$('<li class="layui-nav-right floatright"><a href="javascript:void(0)" onclick="exit(this)">注销</a></li>').appendTo(nav);
+//		$(' <li class="layui-nav-right floatright"><a href="#" data-target="#modifyPassword" onclick="modifyPassword()"><i class="layui-icon" style="font-size: 17px;color: #fff;">&#xe612;</i>'+
+//		  ' &nbsp; <span class="acctInfo"></span></a></li>').appendTo(nav);
 		findModuleParameter(moduleCode, initFun);
 	});
 }
 
 /*
  * 解析导航菜单//即获取二级菜单
- * te5l.com [K]
+ * alex
  */
 function analyzeMenu(code, data){
 	var dl = '';
 	dl += "<dl class='layui-nav-child'>";
 	$.each(data, function(i,v){
-		if(v.moduleSuperCode == code) dl += "<dd><a href='"+v.modulePage+"'>"+v.moduleName+"</a></dd>"; 
+		if(v.moduleSuperCode == code) dl += "<dd><a href='"+v.modulePage+"' target='myiframe'>"+v.moduleName+"</a></dd>"; 
 	});
 	dl += "</dl>";
 	return dl;
@@ -53,7 +53,7 @@ function analyzeMenu(code, data){
 
 /*
  * 获取权限信息, 传入模块编号及回调函数  
- * te5l.com [K]
+ * alex
  */
 function findModuleParameter(moduleCode, initFun) {
 	if(!moduleCode) return;
@@ -83,7 +83,7 @@ function findModuleParameter(moduleCode, initFun) {
 }
 /*
  * 获取面包绡
- * te5l.com [K]
+ * alex
  */
 function findBreadcrumb(){
 	$.post('mgr/findBreadcrumb', {moduleCode : moduleCode}, function(data){
@@ -96,7 +96,7 @@ function findBreadcrumb(){
 }
 /*
  * 追加面包绡
- * te5l.com [K]
+ * alex
  */
 function addBreadcrumb(msg){
 	$('ol.breadcrumb').find('.active').removeClass('active');
@@ -106,7 +106,7 @@ function addBreadcrumb(msg){
 
 /*
  * 退出登录
- * te5l.com [K]
+ * alex
  */
 function exit(tar){
 	layer.confirm("请确认是是否需要注销登录!", function(result){
@@ -235,10 +235,10 @@ function layerMsg(msg,type){
 }
 function modifyPassword(){
 	 layer.open({
-		  title: "修改密码",
+		  title: "修改密码-new",
 		  area : ['30%', '280px'],
 		  type : 2,
-		  content:"./modify_password.html", //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+		  content:"./modify_passwordNew.html", //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
 		  shadeClose :true
 		});
 }
@@ -247,4 +247,13 @@ $.findChecked = function(val){
 };
 $.findOpeion = function(id, current){
 	return id == current ? " selected=true " : "" ;
+};
+function changeFrameHeight(){
+	
+    var ifm= document.getElementById("myiframe"); 
+    var iframepage=  $(".layui-body");
+    ifm.height=iframepage.height();
+};
+window.onresize=function(){  
+     changeFrameHeight(); 
 };

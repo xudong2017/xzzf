@@ -14,7 +14,7 @@ function initFun() {
 }
 /*
  * 获取职位列表数据
- * te5l.com [K]
+ * alex
  */
 function findListInfo() {
 	$.post('mgr/position/findPositionListInfo', {
@@ -47,7 +47,7 @@ function findListInfo() {
 }
 /*
  * 解析操作按钮
- * te5l.com [K]
+ * alex
  */
 function analyzeBtns(v){
 	var btns = "";
@@ -57,7 +57,7 @@ function analyzeBtns(v){
 }
 /*
  * 显示编辑窗口
- * te5l.com [K]
+ * alex
  */
 function showModifyBox(id){
 	$('.empty').removeClass('empty');
@@ -75,7 +75,7 @@ function showModifyBox(id){
 }
 /*
  * 修改职位信息
- * te5l.com [K]
+ * alex
  */
 function modifyPosition(){
 	$.isSubmit = true;
@@ -102,7 +102,7 @@ function modifyPosition(){
  * 获取部门下拉菜单
  * @param curDepartient 当前要被选中的部门
  * @param eml 要被赋值的元素
- * te5l.com [K]
+ * alex
  */
 function findDepartmentSelect(curDepartient, eml) {
 	eml.empty().append("<option value=0>请选择部门</option>");
@@ -116,14 +116,14 @@ function findDepartmentSelect(curDepartient, eml) {
 	}); 
 }
 /*
- * te5l.com [K]
+ * alex
  */
 function analyzeSelect(id, curDepartient){
 	return curDepartient > 0 && id == curDepartient ? " selected=true " : "" ;
 }
 /*
  * 显示添加窗口
- * te5l.com [K]
+ * alex
  */
 function showAddBox(){
 	$('.empty').removeClass('empty');
@@ -156,7 +156,7 @@ function addPosition(){
 }
 /*
  * 提示并确定删除职位信息
- * te5l.com [K]
+ * alex
  */
 function hintDelete(id){
 	if(!id) return;

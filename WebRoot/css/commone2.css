@@ -71,8 +71,9 @@ td{table-layout:fixed; word-break: break-all; overflow:hidden;}
 .acctRole{height:35px; line-height:35px; padding:0px 10px;}
 .acctRole label{font-weight:normal; line-height:13px;}
 .acctRole input{float:left; margin:0px 5px 0px 10px;}
-
 .placeholder{color:#999; padding:5px 0px;}
+
+#ifram_layuiBody{}
 
 /* 重写公共方法 */
 #container {width: 1200px;margin: auto;}
@@ -95,8 +96,8 @@ td{table-layout:fixed; word-break: break-all; overflow:hidden;}
 .funcBtn{float: right;}
 
 /* 重写layerUI样式 */
-.layui-nav{position:fixed !important;width:100%;top: 0px;z-index: 90000 }
-.layui-nav-ul{width: 1200px;margin: auto;}
+/* .layui-nav{position:fixed !important;width:100%;top: 0px;z-index: 90000 } */
+/* .layui-nav-ul{width: 1200px;margin: auto;} */
 .floatright{float: right;}
 .floatleft{float: left;}
 .layui-nav-right{display: inline-block;text-align: center;margin:0 20px;}

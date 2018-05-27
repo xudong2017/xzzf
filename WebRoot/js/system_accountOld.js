@@ -13,7 +13,7 @@ function initFun() {
 }
 /*
  * 获取数据列表
- * te5l.com [K]
+ * alex
  */
 function findListInfo() {
 	$.post('mgr/account/findAccountList', {
@@ -38,7 +38,7 @@ function findListInfo() {
 }
 /*
  * 获取数据分页
- * te5l.com [K]
+ * alex
  */
 function findAccountPage() {
 	$.post('mgr/account/findAccountPage', {
@@ -50,7 +50,7 @@ function findAccountPage() {
 }
 /*
  * 解析操作按钮
- * te5l.com [K]
+ * alex
  */
 function analyzeBtns(v){
 	var btns = "";
@@ -62,7 +62,7 @@ function analyzeBtns(v){
 }
 /*
  * 显示添加窗口
- * te5l.com [K]
+ * alex
  */
 function showAddBox(){
 	$('.empty').removeClass('empty');
@@ -73,7 +73,7 @@ function showAddBox(){
 }
 /*
  * 添加账户信息
- * te5l.com [K]
+ * alex
  */
 var account = {};
 function addAccount(){
@@ -97,7 +97,7 @@ function addAccount(){
 }
 /*
  * 提示并删除帐号列表
- * te5l.com [K]
+ * alex
  */
 function hintDelete(id){
 	if(!id) return;
@@ -114,7 +114,7 @@ function hintDelete(id){
 }
 /*
  * 提示并确认初始密码为123456
- * te5l.com [K]
+ * alex
  */
 function initPassword(id){
 	if(!id) return;
@@ -130,7 +130,7 @@ function initPassword(id){
 }
 /*
  * 显示编辑窗口
- * te5l.com [K]
+ * alex
  */
 function showModifyBox(id){
 	$('.empty').removeClass('empty');
@@ -147,7 +147,7 @@ function showModifyBox(id){
 }
 /*
  * 编辑帐户信息
- * te5l.com [K]
+ * alex
  */
 function mdoifyAccount(){
 	if(!account.id) return;
@@ -168,7 +168,7 @@ function mdoifyAccount(){
 }
 /*
  * 遍历并显示角色列表
- * te5l.com [K]
+ * alex
  */
 function roleMgr(acctName){
 	if(!acctName) return;

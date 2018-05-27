@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 分页传输实体类
- * te5l.com [K]
+ * alex
  * @author Kiro
  */
 public class PageDto implements Serializable {

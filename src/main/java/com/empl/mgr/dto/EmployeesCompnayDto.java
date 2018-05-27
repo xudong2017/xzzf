@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 员工前工作单位传输实体
- * te5l.com [K]
+ * alex
  * @author Kiro
  */
 public class EmployeesCompnayDto implements Serializable {

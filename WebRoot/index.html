@@ -3,40 +3,55 @@
     <head lang="en">
         <meta charset="UTF-8">
         <title>TE网络 | 系统首页</title>
-        <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
-		<link type="text/css" rel="stylesheet" href="./css/bootstrap-dialog.min.css">
-        <link type="text/css" rel="stylesheet" href="./css/commone.css" />
+     	<link type="text/css" rel="stylesheet" href="./css/commone2.css" />
         <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="./js/bootstrap-dialog.min.js"></script>
-        <script type="text/javascript" src="./js/common.js"></script>
+     	<link rel="stylesheet" href="./js/plugins/layui/css/layui.css">
+        <script type="text/javascript" src="./js/plugins/layui/layui.js"></script>
+    	<script type="text/javascript" src="./js/common2.js"></script>
         <script type="text/javascript" src="./js/index.js"></script>
-        <!--[if lt IE 9]>
-            <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
     </head>
-    <body>
-        <div class="nav navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-               <a href="./index.html" class="navbar-brand"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a>
-               <ul class="nav navbar-nav" id="nav-box-ul"></ul>
-               <ul class="nav navbar-nav pull-right">
-               		<li><a href="./modify_password.html" class="acctInfo" data-toggle="modal" data-target="#modifyPassword"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
-                	<li><a href="javascript:void(0)" onclick="exit()">注销</a></li>
-               </ul>
-            </div>
-        </div>
-        
-        <div class="container main hide">
-            <div class="row">
-            	<ol class="breadcrumb"><li>首页</li></ol>
-				<div class="row main-page"></div>
-            </div>
-        </div>
-		<div class="modal fade" id="modifyPassword" tabindex="-1" role="dialog" aria-labelledby="modifyPasswordLabel" aria-hidden="true">
-			<div class="modal-dialog" style="width:400px;"><div class="modal-content"></div></div>
-		</div>
-        
-    </body>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">layui 后台布局</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">商品管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+     <a href="#" data-target="#modifyPassword" onclick="modifyPassword()"><i class="layui-icon" style="font-size: 17px;color: #fff;">&#xe612;</i> &nbsp; <span class="acctInfo"></span></a>
+      </li>
+      <li class="layui-nav-item"><a href="javascript:void(0)" onclick="exit(this)">注销</a></li>
+    </ul>
+  </div>
+  
+  <div  class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <div id="nav" >
+      	<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      	<ul class="layui-nav layui-nav-tree" ></ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="layui-body" style="overflow: hidden;">
+    <!-- 内容主体区域 -->
+  	 <iframe src="http://www.hao123.com" id="myiframe"  name = "myiframe" onload="changeFrameHeight()" frameborder="0" height="100%" width="100%"></iframe>
+  </div>
+  <div class="layui-footer">
+  这是底部
+  </div>
+  </div>
+</body>
 </html>

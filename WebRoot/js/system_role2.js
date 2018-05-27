@@ -41,7 +41,7 @@ function initFun() {
 }
 /*
  * 获取列表数据
- * te5l.com [K]
+ * alex
  */
 function findListInfo() {
 	layui.use('table', function(){
