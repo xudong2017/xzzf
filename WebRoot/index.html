@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title>TE网络 | 系统首页</title>
-     	<link type="text/css" rel="stylesheet" href="./css/commone2.css" />
-        <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
-     	<link rel="stylesheet" href="./js/plugins/layui/css/layui.css">
-        <script type="text/javascript" src="./js/plugins/layui/layui.js"></script>
-    	<script type="text/javascript" src="./js/common2.js"></script>
-        <script type="text/javascript" src="./js/index.js"></script>
-    </head>
+<head lang="en">
+<meta charset="UTF-8">
+<title>TE网络 | 系统首页</title>
+<link type="text/css" rel="stylesheet" href="./css/commone2.css" />
+<script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="./js/plugins/layui/css/layui.css">
+<script type="text/javascript" src="./js/plugins/layui/layui.js"></script>
+<script type="text/javascript" src="./js/common2.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+</head>
 <body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-  <div class="layui-header">
-    <div class="layui-logo">layui 后台布局</div>
-    <!-- 头部区域（可配合layui已有的水平导航） -->
-    <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">控制台</a></li>
-      <li class="layui-nav-item"><a href="">商品管理</a></li>
-      <li class="layui-nav-item"><a href="">用户</a></li>
-      <li class="layui-nav-item">
-        <a href="javascript:;">其它系统</a>
-        <dl class="layui-nav-child">
-          <dd><a href="">邮件管理</a></dd>
-          <dd><a href="">消息管理</a></dd>
-          <dd><a href="">授权管理</a></dd>
-        </dl>
-      </li>
-    </ul>
-    <ul class="layui-nav layui-layout-right">
-      <li class="layui-nav-item">
-     <a href="#" data-target="#modifyPassword" onclick="modifyPassword()"><i class="layui-icon" style="font-size: 17px;color: #fff;">&#xe612;</i> &nbsp; <span class="acctInfo"></span></a>
-      </li>
-      <li class="layui-nav-item"><a href="javascript:void(0)" onclick="exit(this)">注销</a></li>
-    </ul>
-  </div>
-  
-  <div  class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      <div id="nav" >
-      	<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      	<ul class="layui-nav layui-nav-tree" ></ul>
-      </div>
-    </div>
-  </div>
-  
-  <div class="layui-body" style="overflow: hidden;">
-    <!-- 内容主体区域 -->
-  	 <iframe src="http://www.hao123.com" id="myiframe"  name = "myiframe" onload="changeFrameHeight()" frameborder="0" height="100%" width="100%"></iframe>
-  </div>
-  <div class="layui-footer">
-  这是底部
-  </div>
-  </div>
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<div class="layui-logo">
+				<!-- layui 后台布局 -->
+			</div>
+			<!-- 头部区域（可配合layui已有的水平导航） -->
+			<ul class="layui-nav layui-layout-left">
+				<li class="layui-nav-item"><a href="">控制台</a></li>
+				<li class="layui-nav-item"><a href="">商品管理</a></li>
+				<li class="layui-nav-item"><a href="">用户</a></li>
+				<li class="layui-nav-item"><a href="javascript:;">其它系统</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="">邮件管理</a>
+						</dd>
+						<dd>
+							<a href="">消息管理</a>
+						</dd>
+						<dd>
+							<a href="">授权管理</a>
+						</dd>
+					</dl></li>
+			</ul>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item"><a href="#"
+					data-target="#modifyPassword" onclick="modifyPassword()"><i
+						class="layui-icon" style="font-size: 17px;color: #fff;">&#xe612;</i>
+						&nbsp; <span class="acctInfo"></span></a></li>
+				<li class="layui-nav-item"><a href="javascript:void(0)"
+					onclick="exit(this)">注销</a></li>
+			</ul>
+		</div>
+
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<div id="nav">
+					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+					<ul class="layui-nav layui-nav-tree"></ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-body" style="overflow: hidden;">
+			<!-- 内容主体区域 -->
+			<iframe src="blankPage.html" id="myiframe" name="myiframe"
+				onload="changeFrameHeight()" frameborder="0" height="100%"
+				width="100%"></iframe>
+		</div>
+		<div class="layui-footer">这是底部</div>
+	</div>
 </body>
 </html>
