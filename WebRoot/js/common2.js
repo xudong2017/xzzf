@@ -233,8 +233,9 @@ function layerLoading(){
 function layerMsg(msg,type){
 	 layer.msg(msg, { icon: type, time: 2000 });//2秒关闭（如果不配置，默认是3秒）
 }
+var modifyPasswordLayer;
 function modifyPassword(){
-	 layer.open({
+	modifyPasswordLayer = layer.open({
 		  title: "修改密码-new",
 		  area : ['30%', '280px'],
 		  type : 2,

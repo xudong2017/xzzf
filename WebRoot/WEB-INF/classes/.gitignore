@@ -3,3 +3,5 @@
 /config.properties
 /log4j.properties
 /spring-context.xml
+/applicationContext.xml
+/spring-severlet.xml
