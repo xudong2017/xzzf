@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+     <link type="text/css" rel="stylesheet" href="./css/commone2.css" />
+     <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+     <link rel="stylesheet" href="./js/plugins/layui/css/layui.css">
+     <script type="text/javascript" src="./js/plugins/layui/layui.js"></script>
+     <script type="text/javascript" src="./js/common2.js"></script>
+     <script type="text/javascript" src="./js/department.js"></script>
+    </head>
+    <body>
+    	<!--系统导航 begin -->
+		 <div id="nav" > <ul class="layui-nav" ></ul></div>
+    	<!--系统导航end -->	
+   		<div id="container" class="main">
+	    	<!--系统面包屑 begin -->
+	    	<div id="breadCrumb"><span class="layui-breadcrumb" lay-separator="-"></span></div>
+	    	<!--系统面包屑 end -->	
+    	<div class=" content marginTop20">
+	    		<!--搜索模块  -->
+	    		<form id="searchForm">
+		    		<div class="searchform col-lg-75">
+		    			<div class="input-group">
+		    			 	<button type="button" class="searchName-btn searchName-btn-first">部门名称</button>
+		    			 		<input style="width: 40%;" type="text" name="deptName"  lay-verify="required" placeholder="请输入部门名称" autocomplete="off" class="layui-input layui-input-search deptName">
+		    			  	<button type="button" class="layui-btn" onclick="$.search()"><i class="layui-icon"style="font-size: 17px;color: #fff;">&#xe615;</i> 搜 索</button>
+		    			  	<button type="button" class="layui-btn layui-btn-danger" onclick="$.FormClear('.input-group ');"><i class="layui-icon">&#xe640;</i> 清空</button>
+		    			</div>
+		    		</div>
+		    		<div class="searchform col-lg-25">
+		    			<div class="input-group">
+		    			  	<button type="button" class="layui-btn funcBtn" onclick="showAddBox()"><i class="layui-icon"style="font-size: 17px;color: #fff;">&#xe654;</i> 新增部门</button>
+		    			</div>
+		    		</div>
+	    		 </form>
+	    		<div class="col-lg-2"></div>
+	    		<div class="clear_20"></div>
+	    		<!-- 数据显示区域   begin  -->
+	    		<div id="dataTableDiv">
+	    			<table id="dataTable"></table>  
+			    			<!-- 数据操作按钮   begin  此处与table的操作一栏绑定。%勿动%-->
+							<script type="text/html" id="toolBar">
+								{{#  var fn = function(){
+									 var btns = ''; 
+									 if(secure.find){	
+											btns = btns+'<a class="layui-btn layui-btn-mini detail_btn" lay-event="detail">查看</a>';
+									 }if(secure.modify){	
+											btns = btns+'<a class="layui-btn layui-btn-mini " lay-event="edit">修改</a>';
+											btns = btns+'<a class="layui-btn layui-btn-mini layui-bg-blue" lay-event="manager">管理</a>';
+									 }if(secure.del){	
+											btns = btns+'<a class="layui-btn layui-btn-danger layui-btn-mini " lay-event="del">删除</a>';
+									 }  return btns;
+									 };}}
+								{{fn() }}
+							</script>   
+							<!-- 数据操作按钮   begin  -->
+	    		</div>
+			    <!-- 数据显示区域  end  -->
+			    
+    		</div>
+	    </div>
+		
+    </body>
+</html>

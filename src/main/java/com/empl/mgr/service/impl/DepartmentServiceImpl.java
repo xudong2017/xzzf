@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.empl.mgr.constant.EmployeesState;
+import com.empl.mgr.constant.LoginState;
 import com.empl.mgr.constant.PageConstant;
 import com.empl.mgr.constant.TimeFormatConstant;
 import com.empl.mgr.dao.DepartmentDao;
@@ -24,6 +25,7 @@ import com.empl.mgr.model.TeDepartment;
 import com.empl.mgr.model.TeEmployeesBasic;
 import com.empl.mgr.service.DepartmentService;
 import com.empl.mgr.support.JSONReturn;
+import com.empl.mgr.support.LayerJsonReturn;
 import com.empl.mgr.utils.CompareUtil;
 import com.empl.mgr.utils.DateTimeUtil;
 import com.empl.mgr.utils.PageUtils;
@@ -59,6 +61,26 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return JSONReturn.buildSuccess(dtoList);
 	}
 
+	public LayerJsonReturn findDepartmentList(int page,int limit,String searchValue,String acctName) {
+		// TODO Auto-generated method stub
+		List<DepartmentListDto> dtoList = departmentDao.findDepartmentList(page,limit, searchValue);
+		if (CollectionUtils.isEmpty(dtoList))
+			return LayerJsonReturn.buildFailure("未获取到数据!");
+		TeEmployeesBasic empl = null;
+		for (DepartmentListDto dto : dtoList) {
+			dto.setTime(DateTimeUtil.conversionTime(dto.getCreateTime(), TimeFormatConstant.YYYY_MM_DD));
+			dto.setCreateTime(null);
+			if (dto.getPrincipal() < 1)
+				continue;
+			empl = employeesBasicDao.findUniqueByProperty(TeEmployeesBasicField.EM_ID, dto.getPrincipal());
+			if (CompareUtil.isEmpty(empl) || empl.getEmState() != EmployeesState.EMPL_FORMAL)
+				continue;
+			dto.setFullName(empl.getEmFullName());
+		}
+		int count = departmentDao.findAccountListCount(page, limit, searchValue);
+		return LayerJsonReturn.buildSuccess(count,dtoList);
+	}
+	
 	public JSONReturn findDepartmentCount(int page, String searchValue) {
 		// TODO Auto-generated method stub
 		int count = departmentDao.findCountLike(TeDepartmentField.DEPT_NAME, searchValue);

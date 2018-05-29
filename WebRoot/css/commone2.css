@@ -91,7 +91,7 @@ td{table-layout:fixed; word-break: break-all; overflow:hidden;}
 				border-radius: 2px;opacity: .8;border: 1px solid #C9C9C9;background-color: #fff; color: #555;margin-left: 20px;float: left;}
 .searchName-btn-first{margin-left: 0px;}
 .layui-table-header thead tr th .layui-table-cell{font-weight: bold;text-align: center;}
-.ActionBox{display: none;margin: 20px 20px 0 20px;}
+.ActionBox{display: none;margin: 15px 20px 0 20px;}
 .ActionBoxBtn{text-align: center;margin-left: 0px!important;}
 .funcBtn{float: right;}
 

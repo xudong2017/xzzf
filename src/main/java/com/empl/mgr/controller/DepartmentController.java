@@ -14,6 +14,7 @@ import com.empl.mgr.constant.MethodType;
 import com.empl.mgr.controller.support.AbstractController;
 import com.empl.mgr.service.DepartmentService;
 import com.empl.mgr.support.JSONReturn;
+import com.empl.mgr.support.LayerJsonReturn;
 
 @Scope
 @Controller
@@ -23,14 +24,18 @@ public class DepartmentController extends AbstractController {
 	@Autowired
 	private DepartmentService departmentService;
 
+//	@ResponseBody
+//	@RequestMapping(value = "findDepartmentList")
+//	@SecureValid(code = "03001", desc = "获取部门列表", type = MethodType.FIND)
+//	public JSONReturn findDepartmentList(@RequestParam int page,@RequestParam int limit, @RequestParam(required=false) String searchValue, HttpSession httpSession) {
+//		return departmentService.findDepartmentList(page,limit, searchValue, acctName(httpSession));
+//	}
 	@ResponseBody
 	@RequestMapping(value = "findDepartmentList")
-	@SecureValid(code = "03001", desc = "获取部门列表", type = MethodType.FIND)
-	public JSONReturn findDepartmentList(@RequestParam int page, @RequestParam String searchValue,
-			HttpSession httpSession) {
-		return departmentService.findDepartmentList(page, searchValue, acctName(httpSession));
+	@SecureValid(code = "04004", desc = "获取部门列表", type = MethodType.FIND)
+	public LayerJsonReturn findDepartmentList(@RequestParam int page,@RequestParam int limit, @RequestParam(required=false) String searchValue, HttpSession httpSession) {
+		return departmentService.findDepartmentList(page, limit, searchValue, acctName(httpSession));
 	}
-
 	@ResponseBody
 	@RequestMapping(value = "findDepartmentCount")
 	@SecureValid(code = "03001", desc = "获取部分页", type = MethodType.FIND)

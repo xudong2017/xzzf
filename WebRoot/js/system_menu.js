@@ -224,12 +224,12 @@ function listModule(moduleCode,moduleName){
 //			            {checkbox: true},
 //			            ,{fixed:true} //其它参数在此省略
 			            {field: 'moduleId', title: '编号', width:60},
-			            {field: 'moduleName', title: '菜单名称', width:180},
+			            {field: 'moduleName', title: '菜单名称', width:150},
 			            {field: 'moduleCode', title: '菜单编码', width:100,sort:true},
-			            {field: 'modulePage', title: '菜单链接', width:320},
-			            {field: 'time', title: '创建时间', width:200},
+			            {field: 'modulePage', title: '菜单链接', width:300},
+			            {field: 'time', title: '创建时间', width:170},
 
-			            {fixed: 'right',title: '操作', width:200, templet: '#ModuletoolBar'}
+			            {fixed: 'right',title: '操作', width:150, fixed: 'right',templet: '#ModuletoolBar'}
 			          ]],
 	          even:true,
 			  url: 'mgr/findModuleSecondList',			
@@ -260,7 +260,7 @@ function listModule(moduleCode,moduleName){
 				  } 
 			});
 	});
-	layerIndex=layerOpen_forView("二级菜单","div.Module",['60%', '80%']);
+	layerIndex=layerOpen_forView("二级菜单","div.Module",['auto', '80%']);
 }
 /**
  * 条件搜索函数
