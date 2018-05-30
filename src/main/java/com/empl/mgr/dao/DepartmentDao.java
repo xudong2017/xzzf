@@ -26,27 +26,26 @@ public class DepartmentDao extends AbstractDao<TeDepartment> {
 		StringBuffer query = new StringBuffer();
 		query.append("select new com.empl.mgr.dto.DepartmentListDto");
 		query.append("(dept.deptId, dept.deptName, dept.createTime, dept.creator, dept.deptDescription, dept.deptPrincipal) ");
-		query.append("from TeDepartment dept ");
-		query.append(StringUtils.isNotBlank(searchValue) ? " where deptName like '%" + searchValue + "%'" : "");
-		query.append("order by deptId desc");
+		query.append("from TeDepartment dept where dept.status = ? and dept.deptType = 1 ");
+		query.append(StringUtils.isNotBlank(searchValue) ? " and deptName like '%" + searchValue + "%'" : "");
+		query.append(" order by deptId desc");
 		return findSession().createQuery(query.toString()).setFirstResult((page - 1) * PageConstant.PAGE_LIST)
 				.setMaxResults(PageConstant.PAGE_LIST).list();
 	}
 	@SuppressWarnings("unchecked")
-	public List<DepartmentListDto> findDepartmentList(int page,int limit, String searchValue) {
+	public List<DepartmentListDto> findDepartmentList(int page,int limit, String searchValue,Long parentId,long deptType) {
 		// TODO Auto-generated method stub
 		StringBuffer query = new StringBuffer();
 		query.append("select new com.empl.mgr.dto.DepartmentListDto");
-		query.append("(dept.deptId, dept.deptName, dept.createTime, dept.creator, dept.deptDescription, dept.deptPrincipal) ");
-		query.append("from TeDepartment dept ");
-		
-		query.append(StringUtils.isNotBlank(searchValue) ? " where deptName like ?" : "");
+		query.append("(dept.deptId,dept.parentId, dept.deptName,dept.deptType, dept.createTime, dept.creator, dept.deptDescription, dept.deptPrincipal) ");
+		query.append("from TeDepartment dept where dept.status = ? and dept.deptType = ? and parentId = ?");
+		query.append(StringUtils.isNotBlank(searchValue) ? " and deptName like ? " : "");
 		query.append("order by deptId desc");
 		if(StringUtils.isNotBlank(searchValue)){
-			return findSession().createQuery(query.toString()).setString(0, "%"+searchValue+"%").setFirstResult((page - 1) * limit)
+			return findSession().createQuery(query.toString()).setBoolean(0, AccountDeleteState.NO_DELETE).setLong(1, deptType).setLong(2, parentId).setString(3, "%"+searchValue+"%").setFirstResult((page - 1) * limit)
 					.setMaxResults(PageConstant.PAGE_LIST).list();
 		}else{
-			return findSession().createQuery(query.toString()).setFirstResult((page - 1) * limit)
+			return findSession().createQuery(query.toString()).setBoolean(0, AccountDeleteState.NO_DELETE).setLong(1, deptType).setLong(2, parentId).setFirstResult((page - 1) * limit)
 					.setMaxResults(PageConstant.PAGE_LIST).list();
 		}
 		
@@ -59,11 +58,11 @@ public class DepartmentDao extends AbstractDao<TeDepartment> {
 		return findSession().createQuery(query).list();
 	}
 	
-	public int findAccountListCount(int page,int limit, String val){
+	public int findAccountListCount(int page,int limit, String val,long parentId,long deptType){
 		StringBuffer query = new StringBuffer();
 		query.append("select count(id) ");
-		query.append("from TeDepartment dept ");
-		query.append(StringUtils.isNotBlank(val) ? " where deptName like '%" + val + "%'" : "");
-		return Integer.parseInt(findSession().createQuery(query.toString()).uniqueResult().toString());
+		query.append("from TeDepartment dept where dept.status = ? and dept.deptType = ? and parentId = ?");
+		query.append(StringUtils.isNotBlank(val) ? " and deptName like '%" + val + "%'" : "");
+		return Integer.parseInt(findSession().createQuery(query.toString()).setBoolean(0, AccountDeleteState.NO_DELETE).setLong(1, deptType).setLong(2, parentId).uniqueResult().toString());
 	};
 }

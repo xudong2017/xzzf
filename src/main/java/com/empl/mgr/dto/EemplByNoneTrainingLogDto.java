@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 为培训项目添加员工信息时, 获取员工信息列表实体传输类
- * @author Kiro
+ * @author alex
  */
 public class EemplByNoneTrainingLogDto implements Serializable {
 

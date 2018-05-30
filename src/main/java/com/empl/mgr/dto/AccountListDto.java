@@ -5,8 +5,8 @@ import java.util.Date;
 
 /**
  * 账户列表实体传输类
- * alex
- * @author Kiro
+ * 
+ * @author alex
  */
 public class AccountListDto implements Serializable {
 

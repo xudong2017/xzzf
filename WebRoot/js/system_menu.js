@@ -90,7 +90,7 @@ function findListInfo() {
 					  /*赋值*/
 					  showViewBox(data.moduleId);
 				  } else if(layEvent === 'del'){ //删除
-					  layer.confirm('真的删除行么', function(index){
+					  layer.confirm('确认要删除此条数据吗？', function(index){
 					  DeleteModule(data.moduleId);				//调用删除方法
 				      layer.close(index);
 				    });
@@ -120,7 +120,7 @@ $.search=function(){
 */
 function showAddBox(id){
 	var formClass=".AddForm ";
-	$.FormClear(formClass);
+	$.FormJustClear(formClass);
 	layerIndex=layerOpen_forAdd("添加","div.Add","");
 }
 /**
@@ -166,7 +166,7 @@ function showViewBox(id){
 function showEditBox(id){
 	Obj.moduleid = id;
 	var formClass=".EditForm ";
-	$.FormClear(formClass);
+	$.FormJustClear(formClass);
 	loading =layerLoading();
 	$.getJSON('mgr/findMenuByid', {moduleid : id}, function(data){
 		layer.close(loading);
@@ -229,7 +229,7 @@ function listModule(moduleCode,moduleName){
 			            {field: 'modulePage', title: '菜单链接', width:300},
 			            {field: 'time', title: '创建时间', width:170},
 
-			            {fixed: 'right',title: '操作', width:150, fixed: 'right',templet: '#ModuletoolBar'}
+			            {fixed: 'right',title: '操作', width:170, fixed: 'right',templet: '#ModuletoolBar'}
 			          ]],
 	          even:true,
 			  url: 'mgr/findModuleSecondList',			
@@ -276,7 +276,6 @@ $.searchSeconde=function(){
 $.FormClearSecond =function(FormId){
 	$(FormId+" input[name]").val("");
 	$(FormId+" textarea[name]").val("");
-	alert(FormId);
 	$.searchSeconde();
 };
 /**
@@ -284,7 +283,7 @@ $.FormClearSecond =function(FormId){
 */
 function showAddBoxSecond(id){
 	var formClass=".AddFormSecond ";
-	$.FormClear(formClass);
+	$.FormJustClear(formClass);
 	$(formClass+' input.moduleOrder').val('1');
 	$(formClass+' input.moduleSuperCode').val(moduleSuperCode);
 	$(formClass+' input.moduleLevel').val("2");
@@ -335,7 +334,7 @@ function showViewBoxSecond(id){
 function showEditBoxSecond(id){
 	Obj.moduleid = id;
 	var formClass=".EditFormSecond ";
-	$.FormClear(formClass);
+	$.FormJustClear(formClass);
 	loading =layerLoading();
 	$.getJSON('mgr/findMenuByid', {moduleid : id}, function(data){
 		layer.close(loading);

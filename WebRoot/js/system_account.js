@@ -110,7 +110,7 @@ $.search=function(){
 */
 function showAddBox(id){
 	var formClass=".AddForm ";
-	$.FormClear(formClass);
+	$.FormJustClear(formClass);
 	layerIndex=layerOpen_forAdd("添加","div.Add","");
 }
 /**
@@ -170,7 +170,7 @@ function initPassword(id){
 function showEditBox(id){
 	Obj.id = id;
 	var formClass=".EditForm ";
-	$.FormClear(formClass);
+	$.FormJustClear(formClass);
 	loading =layerLoading();
 	$.getJSON('mgr/account/findAccountById', {id : id}, function(data){
 		console.log(data.body);

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 培训记录实体传输类
- * @author Kiro
+ * @author alex
  */
 public class EmployeesTrainingRecordDto implements Serializable {
 

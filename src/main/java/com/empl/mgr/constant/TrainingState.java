@@ -2,7 +2,7 @@ package com.empl.mgr.constant;
 
 /**
  * 培训项目状态
- * @author Kiro
+ * @author alex
  */
 public class TrainingState {
 

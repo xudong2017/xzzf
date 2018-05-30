@@ -61,9 +61,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return JSONReturn.buildSuccess(dtoList);
 	}
 
-	public LayerJsonReturn findDepartmentList(int page,int limit,String searchValue,String acctName) {
+	public LayerJsonReturn findDepartmentList(int page,int limit,String searchValue,long parentId,long deptType,String acctName) {
 		// TODO Auto-generated method stub
-		List<DepartmentListDto> dtoList = departmentDao.findDepartmentList(page,limit, searchValue);
+		List<DepartmentListDto> dtoList = departmentDao.findDepartmentList(page,limit, searchValue,parentId,deptType);
 		if (CollectionUtils.isEmpty(dtoList))
 			return LayerJsonReturn.buildFailure("未获取到数据!");
 		TeEmployeesBasic empl = null;
@@ -77,7 +77,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 				continue;
 			dto.setFullName(empl.getEmFullName());
 		}
-		int count = departmentDao.findAccountListCount(page, limit, searchValue);
+		int count = departmentDao.findAccountListCount(page, limit, searchValue,parentId,deptType);
 		return LayerJsonReturn.buildSuccess(count,dtoList);
 	}
 	
@@ -105,16 +105,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 		dept.setDeptDescription(desc);
 		return JSONReturn.buildSuccess("修改成功!");
 	}
-
 	@Transactional
-	public JSONReturn addDepartment(String name, String desc, String acctName) {
+	public JSONReturn addDepartment(long parentId,String name,String deptType, String desc, String acctName) {
 		// TODO Auto-generated method stub
 		if (StringUtils.isEmpty(name))
 			return JSONReturn.buildFailure("添加失败, 部门名称不能为空!");
 		TeDepartment dept = departmentDao.findUniqueByProperty(TeDepartmentField.DEPT_NAME, name);
 		if (CompareUtil.isNotEmpty(dept))
 			return JSONReturn.buildFailure("添加部门失败, 已存在同名称部门!");
-		departmentDao.save(new TeDepartment(name, DateTimeUtil.getCurrentTime(), acctName, desc, 0));
+		departmentDao.save(new TeDepartment(parentId,name,deptType, DateTimeUtil.getCurrentTime(), acctName, desc, 0));
 		return JSONReturn.buildSuccess("添加成功!");
 	}
 
@@ -165,4 +164,5 @@ public class DepartmentServiceImpl implements DepartmentService {
 		dept.setDeptPrincipal(emplId);
 		return JSONReturn.buildSuccess("设置成功!");
 	}
+
 }

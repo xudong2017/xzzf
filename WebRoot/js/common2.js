@@ -186,6 +186,10 @@ $.FormClear=function(FormId){
 	$(FormId+" textarea[name]").val("");
 	$.search();
 };
+$.FormJustClear=function(FormId){
+	$(FormId+" input[name]").not("input[class*='notReset']").val("");
+	$(FormId+" textarea[name]").val("");
+};
 function layerOpen_forView(title,conteId,arrea){
 	if(arrea==""){
 		arrea =	['30%', 'auto'];
@@ -250,10 +254,12 @@ $.findOpeion = function(id, current){
 	return id == current ? " selected=true " : "" ;
 };
 function changeFrameHeight(){
-	
     var ifm= document.getElementById("myiframe"); 
     var iframepage=  $(".layui-body");
-    ifm.height=iframepage.height();
+    if(iframepage.height()!=null){
+        ifm.height=iframepage.height();
+    }
+   
 };
 window.onresize=function(){  
      changeFrameHeight(); 

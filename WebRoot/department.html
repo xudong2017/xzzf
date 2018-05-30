@@ -9,6 +9,13 @@
      <script type="text/javascript" src="./js/plugins/layui/layui.js"></script>
      <script type="text/javascript" src="./js/common2.js"></script>
      <script type="text/javascript" src="./js/department.js"></script>
+     <style type="text/css">
+     .currentDept {
+    font-weight: bolder;
+    font-size: 14px;
+    padding-bottom: 15px;
+}
+     </style>
     </head>
     <body>
     	<!--系统导航 begin -->
@@ -48,7 +55,7 @@
 											btns = btns+'<a class="layui-btn layui-btn-mini detail_btn" lay-event="detail">查看</a>';
 									 }if(secure.modify){	
 											btns = btns+'<a class="layui-btn layui-btn-mini " lay-event="edit">修改</a>';
-											btns = btns+'<a class="layui-btn layui-btn-mini layui-bg-blue" lay-event="manager">管理</a>';
+											btns = btns+'<a class="layui-btn layui-btn-mini layui-bg-blue" lay-event="Section">添加科室</a>';
 									 }if(secure.del){	
 											btns = btns+'<a class="layui-btn layui-btn-danger layui-btn-mini " lay-event="del">删除</a>';
 									 }  return btns;
@@ -62,5 +69,175 @@
     		</div>
 	    </div>
 		
+		 <!-- 添加  begin-->
+	     <div class="Add ActionBox">
+				<form class="layui-form AddForm" action="">
+				  		<input type="text" style="display: none;" class="form-control parentId"  value="0" />
+						<input type="text" style="display: none;" class="form-control deptType"  value="1" />
+				   <div class="layui-form-item">
+				    <label class="layui-form-label">部门名称：</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="deptName" required  lay-verify="required" placeholder="请输入部门名称" autocomplete="off" class="layui-input deptName" >
+				    </div>
+				  </div>
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">描述：</label>
+				     <div class="layui-input-block">
+   				      <textarea name="deptDescription" placeholder="请输入描述" class="layui-textarea deptDescription" lay-verify="required" autocomplete="off"></textarea>
+				     </div>
+				  </div>
+				  <div class="layui-form-item">
+				    <div class="layui-input-block ActionBoxBtn">
+				      <button class="layui-btn" type="button"  lay-submit lay-filter="Add">添加</button>
+				      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				    </div>
+			  	 </div>
+			</form>
+		</div>
+	    <!-- 添加  end-->
+	    
+		<!-- 查看  begin-->
+	    <div class="View ActionBox">
+			<form class="layui-form ViewForm" action="">
+				  <div class="layui-form-item">
+				    <label class="layui-form-label">部门名称：</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="deptName" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input deptName" disabled="disabled">
+				    </div>
+				  </div>
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">描述：</label>
+				     <div class="layui-input-block">
+				      <textarea name="deptDescription" placeholder="请输入描述" class="layui-textarea deptDescription" lay-verify="required" autocomplete="off"  disabled="disabled"></textarea>
+				     </div>
+				  </div>
+			</form>
+		</div>
+	    <!-- 查看  end-->
+	    
+	     <!-- 修改  begin-->
+	    <div class="Edit ActionBox">
+			<form class="layui-form EditForm" action="">
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">部门名称：</label>
+				     <div class="layui-input-block">
+   				      <input type="text" name="deptName" required  lay-verify="required" placeholder="请输入描述" autocomplete="off" class="layui-input deptName" >
+				     </div>
+				  </div>
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">描述：</label>
+				     <div class="layui-input-block">
+				      <textarea name="deptDescription" placeholder="请输入描述" class="layui-textarea deptDescription" lay-verify="required" autocomplete="off"></textarea>
+				     </div>
+				  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block ActionBoxBtn">
+			      <button class="layui-btn" type="button"  lay-submit lay-filter="Edit">修改</button>
+			      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	    <!-- 修改  end-->
+	    
+	      <!-- 菜单管理  begin-->
+	    <div class="Section ActionBox">
+	   			<!-- 数据显示区域   begin  -->
+	    		<div id="SectionTableDiv">
+			   		<div class="currentDept"></div>
+	    			<div class="input-group">
+	    			  	<button type="button" class="layui-btn funcBtn" onclick="showAddBoxSecond()"><i class="layui-icon"style="font-size: 17px;color: #fff;">&#xe654;</i> 新增科室</button>
+	    			</div>
+	    		<div class="col-lg-2"></div>
+	    		<div class="clear_20"></div>
+	    			<table id="SectionTable"></table>  
+							<!-- 数据操作按钮   begin  此处与table的操作一栏绑定。%勿动% -->
+							<script type="text/html" id="SectiontoolBar">
+								{{#  var fn = function(){
+									 var btns = ''; 
+									 if(secure.find){	
+											btns = btns+'<a class="layui-btn layui-btn-mini detail_btn" lay-event="detail">查看</a>';
+									 }if(secure.modify){	
+											btns = btns+'<a class="layui-btn layui-btn-mini " lay-event="edit">编辑</a>';
+									 }if(secure.del){	
+											btns = btns+'<a class="layui-btn layui-btn-danger layui-btn-mini " lay-event="del">删除</a>';
+									 }  return btns;
+									 };}}
+								{{fn() }}
+							</script>   
+							<!-- 数据操作按钮   end  -->
+	    		</div>
+			    <!-- 数据显示区域  end  -->
+		</div>
+	     <!-- 添加  begin-->
+	     <div class="AddSecond ActionBox">
+				<form class="layui-form AddFormSecond" action="">
+				  		<input type="text" style="display: none;" class="form-control parentId"  value="" />
+						<input type="text" style="display: none;" class="form-control deptType"  value="2" />
+				   <div class="layui-form-item">
+				    <label class="layui-form-label">科室名称：</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="deptName" required  lay-verify="required" placeholder="请输入部门名称" autocomplete="off" class="layui-input deptName" >
+				    </div>
+				  </div>
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">描述：</label>
+				     <div class="layui-input-block">
+   				      <textarea name="deptDescription" placeholder="请输入描述" class="layui-textarea deptDescription" lay-verify="required" autocomplete="off"></textarea>
+				     </div>
+				  </div>
+				  <div class="layui-form-item">
+				    <div class="layui-input-block ActionBoxBtn">
+				      <button class="layui-btn" type="button"  lay-submit lay-filter="AddSecond">添加</button>
+				      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				    </div>
+			  	 </div>
+			</form>
+		</div>
+	    <!-- 添加  end-->
+	    
+		<!-- 查看  begin-->
+	    <div class="ViewSecond ActionBox">
+			<form class="layui-form ViewFormSecond" action="">
+				  <div class="layui-form-item">
+				    <label class="layui-form-label">科室名称：</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="deptName" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input deptName" disabled="disabled">
+				    </div>
+				  </div>
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">描述：</label>
+				     <div class="layui-input-block">
+				      <textarea name="deptDescription" placeholder="请输入描述" class="layui-textarea deptDescription" lay-verify="required" autocomplete="off"  disabled="disabled"></textarea>
+				     </div>
+				  </div>
+			</form>
+		</div>
+	    <!-- 查看  end-->
+	    
+	     <!-- 修改  begin-->
+	    <div class="EditSecond ActionBox">
+			<form class="layui-form EditFormSecond" action="">
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">科室名称：</label>
+				     <div class="layui-input-block">
+   				      <input type="text" name="deptName" required  lay-verify="required" placeholder="请输入描述" autocomplete="off" class="layui-input deptName" >
+				     </div>
+				  </div>
+				  <div class="layui-form-item layui-form-text">
+				     <label class="layui-form-label">描述：</label>
+				     <div class="layui-input-block">
+				      <textarea name="deptDescription" placeholder="请输入描述" class="layui-textarea deptDescription" lay-verify="required" autocomplete="off"></textarea>
+				     </div>
+				  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block ActionBoxBtn">
+			      <button class="layui-btn" type="button"  lay-submit lay-filter="EditSecond">修改</button>
+			      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	    <!-- 修改  end-->
     </body>
 </html>
