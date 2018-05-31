@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 模块传输实体类
  * alex
- * @author Kiro
+ * @author alex
  */
 public class ModuleDto implements Serializable {
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 角色传输实体类
  * alex
- * @author Kiro
+ * @author alex
  */
 public class RoleDto implements Serializable {
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 员工记录类型
- * @author Kiro
+ * @author alex
  */
 public class EmployeesLogType implements Serializable {
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 职位实体传输类
  * alex
- * @author Kiro
+ * @author alex
  */
 public class PositionDto implements Serializable {
 

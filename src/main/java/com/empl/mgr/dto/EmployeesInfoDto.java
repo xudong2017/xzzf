@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * 员工信息传输实体类
  * alex
- * @author Kiro
+ * @author alex
  */
 public class EmployeesInfoDto implements Serializable {
 

@@ -33,8 +33,8 @@ public class DepartmentController extends AbstractController {
 	@ResponseBody
 	@RequestMapping(value = "findDepartmentList")
 	@SecureValid(code = "04004", desc = "获取部门列表", type = MethodType.FIND)
-	public LayerJsonReturn findDepartmentList(@RequestParam int page,@RequestParam int limit, @RequestParam(required=false) String searchValue, HttpSession httpSession) {
-		return departmentService.findDepartmentList(page, limit, searchValue, acctName(httpSession));
+	public LayerJsonReturn findDepartmentList(@RequestParam int page,@RequestParam int limit, @RequestParam(required=false) String searchValue,@RequestParam(required=false) long parentId,@RequestParam long deptType, HttpSession httpSession) {
+		return departmentService.findDepartmentList(page, limit, searchValue,parentId,deptType, acctName(httpSession));
 	}
 	@ResponseBody
 	@RequestMapping(value = "findDepartmentCount")
@@ -53,16 +53,16 @@ public class DepartmentController extends AbstractController {
 	@ResponseBody
 	@RequestMapping(value = "modifyDepartment")
 	@SecureValid(code = "03001", desc = "修改部门信息", type = MethodType.MODIFY)
-	public JSONReturn modifyDepartment(@RequestParam long deptId, @RequestParam String name, String desc,
+	public JSONReturn modifyDepartment(@RequestParam long deptId, @RequestParam String deptName, String deptDescription,
 			HttpSession httpSession) {
-		return departmentService.modifyDepartment(deptId, name, desc, acctName(httpSession));
+		return departmentService.modifyDepartment(deptId, deptName, deptDescription, acctName(httpSession));
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "addDepartment")
 	@SecureValid(code = "03001", desc = "添加部门信息", type = MethodType.ADD)
-	public JSONReturn addDepartment(@RequestParam String name, String desc, HttpSession httpSession) {
-		return departmentService.addDepartment(name, desc, acctName(httpSession));
+	public JSONReturn addDepartment(@RequestParam long parentId,@RequestParam String deptType,@RequestParam String deptName, String deptDescription, HttpSession httpSession) {
+		return departmentService.addDepartment(parentId,deptName,deptType, deptDescription, acctName(httpSession));
 	}
 
 	@ResponseBody

@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 角色列表实体传输类
  * alex
- * @author Kiro
+ * @author alex
  */
 public class RoleListDto implements Serializable {
 

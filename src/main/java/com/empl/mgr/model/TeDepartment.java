@@ -1,10 +1,13 @@
 package com.empl.mgr.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -19,13 +22,15 @@ public class TeDepartment implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long deptId;
+	private long parentId; // 父节点ID
 	private Date timestamp;
 	private String deptName;
+	private String deptType; // 部门类型（1：部门，2：科室）
 	private Date createTime;
 	private String creator;
 	private String deptDescription;
 	private long deptPrincipal;
-
+	private boolean status;// 数据状态
 	// Constructors
 
 	/** default constructor */
@@ -33,8 +38,10 @@ public class TeDepartment implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public TeDepartment(String deptName, Date createTime, String creator, String deptDescription, long deptPrincipal) {
+	public TeDepartment(long parentId,String deptName,String deptType, Date createTime, String creator, String deptDescription, long deptPrincipal) {
+		this.parentId = parentId;
 		this.deptName = deptName;
+		this.deptType = deptType;
 		this.createTime = createTime;
 		this.creator = creator;
 		this.deptDescription = deptDescription;
@@ -113,6 +120,30 @@ public class TeDepartment implements java.io.Serializable {
 
 	public void setDeptPrincipal(long deptPrincipal) {
 		this.deptPrincipal = deptPrincipal;
+	}
+	@Column(name = "parentId")
+	public long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(long parentId) {
+		this.parentId = parentId;
+	}
+	@Column(name = "deptType")
+	public String getDeptType() {
+		return deptType;
+	}
+
+	public void setDeptType(String deptType) {
+		this.deptType = deptType;
+	}
+	@Column(name = "status")
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }
